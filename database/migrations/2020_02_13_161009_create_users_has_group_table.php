@@ -14,7 +14,7 @@ class CreateUsersHasGroupTable extends Migration
     public function up()
     {
         Schema::create('users_has_group', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('id_user')->unsigned()->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('id_group')->unsigned()->nullable();

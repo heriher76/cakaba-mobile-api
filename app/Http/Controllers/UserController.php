@@ -37,9 +37,9 @@ class UserController extends Controller
      */
     public function allUsers()
     {
-        $iam = Auth::user();
+        $users = User::all();
 
-        return response()->json(['users' =>  $iam->family->users], 200);
+        return response()->json(['data' =>  $users], 200);
     }
 
     /**
@@ -51,13 +51,21 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
-            $iam = Auth::user();
-
-            if ($iam->family->id !== $user->family->id) {
-                return response()->json(['message' => 'Cannot See Profile'], 403);
-            }
 
             return response()->json(['user' => $user], 200);
+
+        } catch (\Exception $e) {
+
+            return response()->json(['message' => 'User Not Found!'], 404);
+        }
+    }
+
+    public function searchUser($name)
+    {
+        try {
+            $users = User::where('name', 'LIKE', "%$name%")->get();
+
+            return response()->json(['users' => $users], 200);
 
         } catch (\Exception $e) {
 
@@ -70,25 +78,30 @@ class UserController extends Controller
         //validate incoming request
         $this->validate($request, [
             'name' => 'string',
-            'hp' => 'string',
-            'address' => 'string',
-            'status' => 'string'
+            'email' => 'email|unique:users',
+            'komisariat' => 'string',
+            'department' => 'string',
+            'hp' => 'string'
         ]);
 
         try {
             $iam = Auth::user();
 
             ($request->input('name')) ? $name = $request->input('name') : $name = null;
+            ($request->input('email')) ? $email = $request->input('email') : $email = null;
             ($request->input('hp')) ? $hp = $request->input('hp') : $hp = null;
             ($request->input('address')) ? $address = $request->input('address') : $address = null;
-            ($request->input('status')) ? $status = $request->input('status') : $status = null;
+            ($request->input('department')) ? $department = $request->input('department') : $department = null;
+            ($request->input('komisariat')) ? $komisariat = $request->input('komisariat') : $komisariat = null;
 
             $user = User::where('id', $iam->id)->first();
             $user->update([
               'name' => $name,
               'hp' => $hp,
+              'email' => $email,
               'address' => $address,
-              'status' => $status
+              'department' => $department,
+              'komisariat' => $komisariat
             ]);
 
             //return successful response
@@ -182,25 +195,5 @@ class UserController extends Controller
           //return error message
           return response()->json(['message' => 'Store GCM Token Failed!'], 409);
       }
-    }
-
-    public function updateStatus(Request $request, $id)
-    {dd(Carbon::now()->toDateTimeString());
-      //validate incoming request
-      $this->validate($request, [
-          'status' => 'boolean'
-      ]);
-
-      return $request->all();
-    }
-
-    public function updateTimer(Request $request, $id)
-    {
-      //validate incoming request
-      $this->validate($request, [
-          'until' => 'date_format:H:i:s'
-      ]);
-
-      return $request->all();
     }
 }

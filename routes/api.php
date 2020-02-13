@@ -24,11 +24,12 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
   //GET USER
   Route::get('users', 'UserController@allUsers');
   Route::get('users/{id}', 'UserController@singleUser');
+  Route::get('users/search/{name}', 'UserController@searchUser');
   //EVENT
-  Route::get('event', 'EventController@index');
-  Route::post('event/create', 'EventController@store');
-  Route::put('event/update/{id}', 'EventController@update');
-  Route::delete('event/delete/{id}', 'EventController@destroy');
+  Route::get('events', 'EventController@index');
+  Route::post('events/create', 'EventController@store');
+  Route::put('events/update/{id}', 'EventController@update');
+  Route::delete('events/delete/{id}', 'EventController@destroy');
   //MESSAGE
   Route::get('messages', 'ChatsController@fetchMessages');
   Route::post('messages/create', 'ChatsController@sendMessage');

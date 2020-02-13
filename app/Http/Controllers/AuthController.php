@@ -62,8 +62,8 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'komisariat' => 'string',
-            // 'address' => 'string',
-            'status' => 'string'
+            'department' => 'string',
+            'hp' => 'string'
         ]);
 
         try {
@@ -74,14 +74,9 @@ class AuthController extends Controller
             $plainPassword = $request->input('password');
             $user->password = app('hash')->make($plainPassword);
             $user->komisariat = $request->input('komisariat');
-            // $user->address = $request->input('address');
-            $user->status = $request->input('status');
+            $user->department = $request->input('department');
+            $user->hp = $request->input('hp');
 
-            // ($request->file('photo') != null) ? $namaPhoto = Str::random(32).'.'.$request->file('photo')->getClientOriginalExtension() : $namaPhoto = null;
-            //
-            // $user->photo = $namaPhoto;
-            //
-            // ($request->file('photo') != null) ? $request->file('photo')->move(base_path().('/public/photo-profile'), $namaPhoto) : null;
             $user->save();
 
             $credentials = $request->only(['email', 'password']);

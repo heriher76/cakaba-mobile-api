@@ -14,7 +14,7 @@ class CreatePersonalchatsTable extends Migration
     public function up()
     {
         Schema::create('personalchats', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('id_user')->unsigned()->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('id_receiver')->unsigned()->nullable();
