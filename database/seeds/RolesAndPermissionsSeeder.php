@@ -18,16 +18,15 @@ class RolesAndPermissionsSeeder extends Seeder
          app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
          // give permissions
-         Permission::create(['name' => 'register child']);
          Permission::create(['name' => 'get profile']);
          Permission::create(['name' => 'get other profile']);
          Permission::create(['name' => 'get all profile']);
 
          // or may be done by chaining
-         $role = Role::create(['name' => 'parent'])
-             ->givePermissionTo(['register child', 'get profile', 'get other profile', 'get all profile']);
+         $role = Role::create(['name' => 'kahmi'])
+             ->givePermissionTo(['get profile', 'get other profile', 'get all profile']);
 
-         $role = Role::create(['name' => 'child'])
+         $role = Role::create(['name' => 'kader'])
              ->givePermissionTo(['get profile', 'get other profile', 'get all profile']);
 
          $parent = User::create([
@@ -36,7 +35,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'email' => 'herhermawan007@gmail.com'
         ]);
 
-        $parent->assignRole('parent');
+        $parent->assignRole('kader');
 
         $child = User::create([
            'name' => 'Bocah Cilik',
@@ -44,6 +43,6 @@ class RolesAndPermissionsSeeder extends Seeder
            'email' => 'mawanher07@gmail.com'
        ]);
 
-       $child->assignRole('child');
+       $child->assignRole('kahmi');
      }
 }

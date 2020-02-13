@@ -16,10 +16,9 @@ class UpdateUsersTable extends Migration
       Schema::table('users', function (Blueprint $table) {
           $table->string('hp')->after('password')->nullable();
           $table->string('address')->after('hp')->nullable();
-          $table->string('status')->after('address')->nullable();
-          $table->string('photo')->after('status')->nullable();
-          $table->integer('id_family')->after('photo')->unsigned()->nullable();
-          $table->foreign('id_family')->references('id')->on('families')->onUpdate('cascade')->onDelete('cascade');
+          $table->string('department')->after('address')->nullable();
+          $table->string('photo')->after('department')->nullable();
+          $table->string('komisariat')->after('photo')->nullable();
       });
     }
 
@@ -33,9 +32,9 @@ class UpdateUsersTable extends Migration
       Schema::table('users', function (Blueprint $table) {
         $table->dropColumn('hp');
         $table->dropColumn('address');
-        $table->dropColumn('status');
+        $table->dropColumn('department');
         $table->dropColumn('photo');
-        $table->dropColumn('id_family');
+        $table->dropColumn('komisariat');
       });
     }
 }

@@ -20,7 +20,7 @@ class User extends Authenticatable implements AuthenticatableContract, Authoriza
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'hp', 'status', 'address', 'photo', 'id_family', 'gcmtoken'
+        'name', 'email', 'hp', 'department', 'address', 'photo', 'komisariat', 'gcmtoken'
     ];
 
     /**
@@ -64,33 +64,8 @@ class User extends Authenticatable implements AuthenticatableContract, Authoriza
         return [];
     }
 
-    public function family()
-    {
-        return $this->belongsTo('App\Family', 'id_family');
-    }
-
-    public function events()
-    {
-        return $this->hasMany('App\Event', 'id_user');
-    }
-
-    public function location()
-    {
-        return $this->hasOne('App\Location', 'id_user');
-    }
-
     public function messages()
     {
         return $this->hasMany('App\Message', 'id_user');
-    }
-
-    public function logger()
-    {
-        return $this->hasOne('App\Logger', 'id_user');
-    }
-
-    public function timer()
-    {
-        return $this->hasOne('App\Timer', 'id_user');
     }
 }

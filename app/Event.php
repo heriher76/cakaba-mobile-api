@@ -12,16 +12,6 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'date', 'description', 'reminder', 'id_family', 'id_user'
+        'name', 'date', 'description'
     ];
-
-    public function family()
-    {
-        return $this->belongsTo('App\Family', 'id_family');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'id_user');
-    }
 }

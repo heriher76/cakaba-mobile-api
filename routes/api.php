@@ -13,14 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['middleware' => ['auth', 'role:parent']], function () use ($router) {
-  Route::post('register-child', 'AuthController@registerChild');
-  Route::post('family/create', 'FamilyController@store');
-  Route::put('family/update', 'FamilyController@update');
-  //STATUS
-  Route::put('users/status/{id}', 'UserController@updateStatus');
-  Route::put('users/timer/{id}', 'UserController@updateTimer');
-});
 Route::group(['middleware' => 'auth'], function () use ($router) {
   //PROFILE
   Route::get('profile', 'UserController@profile');
@@ -37,12 +29,9 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
   Route::post('event/create', 'EventController@store');
   Route::put('event/update/{id}', 'EventController@update');
   Route::delete('event/delete/{id}', 'EventController@destroy');
-  //LOCATION
-  Route::put('location/update', 'LocationController@update');
-  Route::get('location/{id}', 'LocationController@getLocation');
   //MESSAGE
   Route::get('messages', 'ChatsController@fetchMessages');
   Route::post('messages/create', 'ChatsController@sendMessage');
 });
-Route::post('register', 'AuthController@register'); // register parent
+Route::post('register', 'AuthController@register'); // register kader
 Route::post('login', 'AuthController@login'); // login all

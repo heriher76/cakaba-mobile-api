@@ -18,9 +18,6 @@ class CreateEventsTable extends Migration
             $table->string('name')->nullable();
             $table->date('date')->nullable();
             $table->longText('description')->nullable();
-            $table->boolean('reminder')->nullable();
-            $table->integer('id_family')->unsigned()->nullable();
-            $table->foreign('id_family')->references('id')->on('families')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
