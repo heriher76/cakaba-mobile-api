@@ -25,14 +25,22 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
   Route::get('users', 'UserController@allUsers');
   Route::get('users/{id}', 'UserController@singleUser');
   Route::get('users/search/{name}', 'UserController@searchUser');
-  //EVENT
-  Route::get('events', 'EventController@index');
-  Route::post('events/create', 'EventController@store');
-  Route::put('events/update/{id}', 'EventController@update');
-  Route::delete('events/delete/{id}', 'EventController@destroy');
   //MESSAGE
   Route::get('messages', 'ChatsController@fetchMessages');
   Route::post('messages/create', 'ChatsController@sendMessage');
+  //Article
+  Route::get('articles', 'ArticleController@index');
+  Route::get('articles/{id}', 'ArticleController@show');
+  //Calendar
+  Route::get('calendars', 'CalendarController@index');
+  Route::get('calendars/{id}', 'CalendarController@show');
+  //Ebook
+  Route::get('ebooks', 'EbookController@index');
+  Route::get('ebooks/{id}', 'EbookController@show');
+  //PROFILE CAKABA
+  Route::get('cakaba-profile', 'CakabaProfileController@index');
+  //StructureOrganization
+  Route::get('structure-organization', 'StructureOrganizationController@index');
 });
 Route::post('register', 'AuthController@register'); // register kader
 Route::post('login', 'AuthController@login'); // login all
