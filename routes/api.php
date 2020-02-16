@@ -25,9 +25,19 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
   Route::get('users', 'UserController@allUsers');
   Route::get('users/{id}', 'UserController@singleUser');
   Route::get('users/search/{name}', 'UserController@searchUser');
+  //GroupChat
+  Route::post('groupchat/create', 'GroupChatController@create');
+  Route::post('groupchat/{id}/add', 'GroupChatController@add');
+  Route::delete('groupchat/{id}/leave', 'GroupChatController@leave');
+  Route::get('groupchat/{id}/users', 'GroupChatController@users');
   //MESSAGE
-  Route::get('messages', 'ChatsController@fetchMessages');
-  Route::post('messages/create', 'ChatsController@sendMessage');
+  Route::post('messages/create/group/{id}', 'ChatsController@groupSendMessage');
+  Route::post('messages/create/personal/{id}', 'ChatsController@personalSendMessage');
+  Route::get('messages/fetch/group/{id}', 'ChatsController@groupFetchMessages');
+  Route::get('messages/fetch/personal/{id}', 'ChatsController@personalFetchMessages');
+  //DeleteConversation
+  Route::delete('conversation/delete/personal/{id}', 'ChatsController@personalDeleteChat');
+  Route::delete('conversation/delete/group/{id}', 'ChatsController@groupDeleteChat');
   //Article
   Route::get('articles', 'ArticleController@index');
   Route::get('articles/{id}', 'ArticleController@show');

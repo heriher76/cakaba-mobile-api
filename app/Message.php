@@ -12,7 +12,7 @@ class Message extends Model
      * @var array
      */
     protected $fillable = [
-        'message', 'id_user', 'id_family'
+        'message', 'id_user', 'id_group', 'id_personal'
     ];
 
     public function user()
@@ -20,8 +20,13 @@ class Message extends Model
       return $this->belongsTo('App\User', 'id_user');
     }
 
-    public function family()
+    public function groupChat()
     {
-      return $this->belongsTo('App\Family', 'id_family');
+      return $this->belongsTo('App\GroupChat', 'id_group');
+    }
+
+    public function personalChat()
+    {
+      return $this->belongsTo('App\PersonalChat', 'id_personal');
     }
 }

@@ -64,8 +64,18 @@ class User extends Authenticatable implements AuthenticatableContract, Authoriza
         return [];
     }
 
-    public function messages()
+    public function personalChats()
     {
-        return $this->hasMany('App\Message', 'id_user');
+        return $this->hasMany('App\PersonalChat', 'id_user');
+    }
+
+    public function groups()
+    {
+      return $this->belongsToMany('App\GroupChat', 'users_has_group', 'id_user', 'id_group');
+    }
+
+    public function adminGroups()
+    {
+        return $this->hasMany('App\GroupChat', 'admin_group');
     }
 }
