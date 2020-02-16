@@ -44,3 +44,14 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
 });
 Route::post('register', 'AuthController@register'); // register kader
 Route::post('login', 'AuthController@login'); // login all
+
+Route::get('/clear', function() {
+
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+
+   return "Cleared!";
+
+});
