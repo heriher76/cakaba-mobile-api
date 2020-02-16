@@ -26,10 +26,13 @@ Route::group(['middleware' => 'auth'], function () use ($router) {
   Route::get('users/{id}', 'UserController@singleUser');
   Route::get('users/search/{name}', 'UserController@searchUser');
   //GroupChat
+  Route::get('groupchat', 'GroupChatController@index');
   Route::post('groupchat/create', 'GroupChatController@create');
   Route::post('groupchat/{id}/add', 'GroupChatController@add');
   Route::delete('groupchat/{id}/leave', 'GroupChatController@leave');
   Route::get('groupchat/{id}/users', 'GroupChatController@users');
+  //PersonalChat
+  Route::get('personalchat', 'PersonalChatController@index');
   //MESSAGE
   Route::post('messages/create/group/{id}', 'ChatsController@groupSendMessage');
   Route::post('messages/create/personal/{id}', 'ChatsController@personalSendMessage');

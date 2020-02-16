@@ -8,6 +8,17 @@ use App\UserHasGroup;
 
 class GroupChatController extends Controller
 {
+    public function index() {
+        try {
+            $iam = \Auth::user();
+
+            return response()->json(['data' => $iam->groups, 'message' => 'Get Group Chats Succesfully'], 200);
+        } catch (\Exception $e) {
+            //return error message
+            return response()->json(['message' => 'Cant Get Group Chats!'], 409);
+        }
+    }
+
     public function create(Request $request)
     {
         try {
@@ -39,7 +50,7 @@ class GroupChatController extends Controller
             if($groupChat->admin == null || $groupChat->admin->id != $iam->id) {
                 return response()->json(['message' => 'You Are Not Admin Group!'], 409);
             }
-            
+
             $users = $request->input('users');
             $groupChat->users()->attach($users);
 
