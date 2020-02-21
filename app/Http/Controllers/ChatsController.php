@@ -39,6 +39,7 @@ class ChatsController extends Controller
         $fields = array(
             'registration_ids' => $registration_ids,
             'data' => $pushdata,
+            'format' => 'group'
         );
 
         $pushNotif = $this->sendGroupPushNotification($fields);
@@ -141,6 +142,7 @@ class ChatsController extends Controller
         $fields = array(
             'registration_ids' => $registration_ids,
             'data' => $pushdata,
+            'format' => 'personal'
         );
 
         $pushNotif = $this->sendPersonalPushNotification($fields);
