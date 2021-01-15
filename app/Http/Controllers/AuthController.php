@@ -22,8 +22,8 @@ class AuthController extends Controller
     }
     private function guard()
   	{
-    		// return auth()->guard('api');
-    		return Auth::guard('api');
+		// return auth()->guard('api');
+		return Auth::guard('api');
   	}
     /**
      * Get a JWT via given credentials.
