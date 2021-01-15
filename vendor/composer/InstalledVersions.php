@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '193a0f4adb8624d1645ec98cfa1e2b5d6a5faad2',
+    'reference' => '03d1da470a6db14e99e828aa01a02385356f38ce',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -402,7 +402,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '193a0f4adb8624d1645ec98cfa1e2b5d6a5faad2',
+      'reference' => '03d1da470a6db14e99e828aa01a02385356f38ce',
     ),
     'laravel/tinker' => 
     array (
@@ -713,12 +713,12 @@ private static $installed = array (
     ),
     'pusher/pusher-php-server' => 
     array (
-      'pretty_version' => 'v3.3.1',
-      'version' => '3.3.1.0',
+      'pretty_version' => 'v4.1.5',
+      'version' => '4.1.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2279bcd21a608a76f9be1fe0675aa2dd1efb2fa0',
+      'reference' => '251f22602320c1b1aff84798fe74f3f7ee0504a9',
     ),
     'ramsey/uuid' => 
     array (
